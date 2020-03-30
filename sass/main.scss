@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css?family=Sen:400,800&display=swap&subset=latin-ext");
+
+$xl: "screen and (min-width: 1200px)";
+$lg: "screen and (min-width: 992px)";
+$md: "screen and (min-width: 768px)";
+$sm: "screen and (min-width: 576px)";
+
+$firstColor: #cfd9df;
+$secondColor: #e2ebf0;
+$lightOrange: #f6d365;
+$darkOrange: #fda085;
+$gradient: linear-gradient(to top, $firstColor 0%, $secondColor 100%);
+$gradientOrange: linear-gradient(120deg, $lightOrange 0%, $darkOrange 100%);
+
+//background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+//background-image: linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%);
+//background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%);
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 15px;
+  &-thumb {
+    box-shadow: inset 0 0 15px 15px rgba(110, 110, 110, 0.4);
+    border: solid 5px transparent;
+    border-radius: 1.3em;
+  }
+  &-track {
+    box-shadow: inset 0 0 15px 15px transparent;
+    border: solid 5px transparent;
+  }
+}
+
+body {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-image: $gradient;
+  font-family: "Sen", sans-serif;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  background: transparent;
+  font-family: inherit;
+  color: inherit;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input::placeholder {
+  font-family: inherit;
+  color: inherit;
+}
+
+button:active,
+button:focus,
+input:active,
+input:focus,
+select:active,
+select:focus,
+textarea:active,
+textarea:focus {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.container {
+  width: 100%;
+}
