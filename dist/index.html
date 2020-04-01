@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cooking Calculator</title>
     <link rel="stylesheet" href="css/main.min.css" />
+    <script
+      src="https://kit.fontawesome.com/1df1c9dc3d.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
   </head>
   <body>
     <section class="container">
-      <section class="add_ingredient">
+      <section class="add_ingredient box">
         <h3 class="add_ingredient__title">Dodaj składnik</h3>
         <form class="add_ingredient__form">
           <div class="add_ingredient__control">
@@ -23,46 +28,56 @@
             <label for="name">Nazwa </label>
             <input type="text" id="name" name="name" placeholder="np. mleko" />
           </div>
-          <div class="add_ingredient__control">
-            <button type="submit" class="add_ingredient__button">Dodaj</button>
+          <div class="add_ingredient__control--button">
+            <button type="submit" class="add_ingredient__button">
+              <i class="fas fa-plus"></i>
+            </button>
           </div>
         </form>
       </section>
-      <section class="portion">
+      <section class="portion box">
         <div class="portion__control">
           <label for="portion">Wielkość porcji</label>
-          <input type="text" id="portion_input" placeholder="1" />
+          <input type="text" id="portion_input" placeholder="1" value="1" />
         </div>
       </section>
-      <section class="ingredients">
+      <section class="ingredients box">
         <div class="ingredients__control">
-          <span class="ingredients__label">
-            wartość w gram lub ml
-          </span>
+          <button class="ingredients__button" id="clear_ingredients">
+            wyczyść listę
+          </button>
           <button
-            class="ingredients__button"
+            class="ingredients__button_unit"
             data-value="off"
             id="basic_unit"
-          ></button>
+          >
+            <span class="unit__label">
+              wartości w gram/ml
+            </span>
+            <span class="unit__button">
+              <span class="stripe"></span>
+              <span class="dot"></span>
+            </span>
+          </button>
         </div>
         <div class="ingredients__content"></div>
       </section>
-      <section class="temperature">
+      <section class="temperature box">
         <h3 class="temperature__title">Przelicz temperaturę</h3>
         <div class="temperature__control">
           <input type="text" id="input_temperature" placeholder="0" />
           <span class="first_scale" data-scale="F">&deg;F</span>
         </div>
-        <button type="button" class="temperature_button">
-          Zamień jednostki
+        <button type="button" class="temperature__button">
+          <i class="fas fa-sync-alt"></i>
         </button>
-        <h4 class="temperature_subtitle">
+        <h4 class="temperature__subtitle">
           <span id="result_temperature">0</span>
           <span class="result_scale" data-scale="C">&deg;C</span>
         </h4>
       </section>
-      <section class="measure"></section>
-      <section class="products"></section>
+      <section class="measure box"></section>
+      <section class="products box"></section>
     </section>
     <script src="js/constants.js"></script>
     <script src="js/helper.js"></script>

@@ -41,5 +41,55 @@ class UI {
     });
   }
 
-  static displayIngredients(ingredients) {}
+  static getIngredientElement(ingredients, index, basicUnit, portion) {
+    const ingredient = { ...ingredients[index] };
+    const unitValue = getUnitValue(ingredient.unit);
+
+    if (basicUnit && ingredient.unit !== "cup" && WEIGHTS[unitValue]) {
+      const { amount, unit } = getValueForBasicUnit(
+        ingredient.amount,
+        unitValue
+      );
+      ingredient.amount = amount;
+      ingredient.unit = unit;
+    }
+
+    ingredient.amount *= portion;
+
+    const element = document.createElement("section");
+    element.classList.add("ingredient_item");
+    element.addEventListener("click", e =>
+      removeIngredientHandler(e, ingredients, index)
+    );
+    element.innerHTML = `
+      <p class="ingredient_item__text">${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
+      <button class="ingredient_item__button">
+        <i class="far fa-times-circle"></i>
+      </button>
+    `;
+
+    return element;
+  }
+
+  static displayIngredients(ingredients) {
+    const basicUnitButton = document.getElementById("basic_unit");
+    const ingredientsContent = document.querySelector(".ingredients__content");
+    const portionInput = document.getElementById("portion_input");
+
+    ingredientsContent.innerHTML = "";
+
+    const basicUnit =
+      basicUnitButton.getAttribute("data-value") === "off" ? false : true;
+    const portionValue = prepareNumber(portionInput.value);
+    const portion =
+      portionValue === "" || !checkNumber(portionValue)
+        ? 1
+        : parseFloat(portionValue);
+
+    ingredients.forEach((ingredient, index) => {
+      ingredientsContent.appendChild(
+        UI.getIngredientElement(ingredients, index, basicUnit, portion)
+      );
+    });
+  }
 }

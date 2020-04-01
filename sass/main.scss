@@ -5,12 +5,30 @@ $lg: "screen and (min-width: 992px)";
 $md: "screen and (min-width: 768px)";
 $sm: "screen and (min-width: 576px)";
 
-$firstColor: #cfd9df;
-$secondColor: #e2ebf0;
+$firstColor: rgb(207, 217, 223);
+$secondColor: rgb(226, 235, 240);
 $lightOrange: #f6d365;
 $darkOrange: #fda085;
 $gradient: linear-gradient(to top, $firstColor 0%, $secondColor 100%);
-$gradientOrange: linear-gradient(120deg, $lightOrange 0%, $darkOrange 100%);
+$gradientOrange: linear-gradient(120deg, $darkOrange 0%, $lightOrange 100%);
+$lightColor: #efefef;
+$darkColor: #333;
+
+%circle_btn {
+  width: 35px;
+  height: 35px;
+  line-height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(120deg, $lightOrange 0%, $darkOrange 100%);
+  cursor: pointer;
+  color: darken($lightColor, 2);
+  box-shadow: inset 1.5px 1.5px darken($lightOrange, 10),
+    inset -1px -1px lighten($darkOrange, 10), 2px 2px 15px rgba(0, 0, 0, 0.25),
+    -2px -2px 15px rgba(255, 255, 255, 1);
+  &:hover {
+    color: #fff;
+  }
+}
 
 //background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
 //background-image: linear-gradient(to top, #ebc0fd 0%, #d9ded8 100%);
@@ -44,7 +62,14 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background-image: $gradient;
+  color: $darkColor;
   font-family: "Sen", sans-serif;
+}
+
+i,
+.unit__label,
+.unit__button {
+  pointer-events: none;
 }
 
 button,
@@ -64,6 +89,10 @@ input::placeholder {
   color: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 button:active,
 button:focus,
 input:active,
@@ -76,6 +105,215 @@ textarea:focus {
   -webkit-tap-highlight-color: transparent;
 }
 
+input,
+select {
+  padding: 0.5em 0.6em;
+  box-shadow: 0.5px 0.5px rgb(247, 255, 255), -0.5px -0.5px rgb(167, 177, 183),
+    inset 2px 2px 10px rgba(0, 0, 0, 0.15),
+    inset -2px -2px 10px rgb(255, 255, 255);
+  border-radius: 0.8em;
+  width: 100%;
+}
+
 .container {
   width: 100%;
+  height: auto;
+  padding: 1.5em;
+}
+
+.box {
+  width: 100%;
+  height: auto;
+  background: lighten($firstColor, 7);
+  margin-bottom: 1.5em;
+  border-radius: 1em;
+  padding: 0.8em;
+  box-shadow: inset -0.5px -0.5px rgb(167, 177, 183),
+    inset 1px 1px rgb(247, 255, 255), 0px 1px 8px -1px rgba(0, 0, 0, 0.2),
+    0px 2px 16px -1px rgba(0, 0, 0, 0.2);
+
+  &:last-child {
+    margin-bottom: 0.1em;
+  }
+}
+
+.add_ingredient {
+  &__title {
+    font-weight: 400;
+    font-size: 1em;
+    margin-bottom: 0.3em;
+  }
+
+  &__control {
+    margin: 0.9em 0em;
+    display: flex;
+    align-items: center;
+    label {
+      margin-right: 0.6em;
+      font-size: 0.95em;
+    }
+
+    &--button {
+      margin-bottom: 0.2em;
+      text-align: right;
+    }
+  }
+
+  &__button {
+    @extend %circle_btn;
+  }
+}
+
+.portion {
+  &__control {
+    margin: 0.9em 0em;
+    display: flex;
+    align-items: center;
+    label {
+      margin-right: 0.6em;
+      font-size: 0.95em;
+    }
+  }
+}
+
+.temperature {
+  text-align: center;
+  &__title {
+    font-weight: 400;
+    font-size: 1em;
+    margin-bottom: 0.3em;
+  }
+  &__control {
+    margin: 0.9em 0em;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: 0.6em;
+      font-size: 0.95em;
+    }
+  }
+  &__button {
+    @extend %circle_btn;
+    margin-bottom: 0.9em;
+  }
+
+  &__subtitle {
+    color: #555;
+    margin-top: 0.3em;
+  }
+}
+
+.measure.box,
+.products.box {
+  padding: 0px;
+  .products__item,
+  .measure__item {
+    width: 100%;
+    border-bottom: 3px solid rgba(187, 197, 203, 0.8);
+    padding: 1em;
+    font-size: 0.95em;
+    &:last-child {
+      border-bottom: 0px;
+    }
+  }
+}
+
+.ingredients.box {
+  padding: 0px;
+  .ingredients__control,
+  .ingredient_item {
+    width: 100%;
+    border-bottom: 3px solid rgba(187, 197, 203, 0.8);
+    padding: 1em;
+    font-size: 0.95em;
+    display: flex;
+  }
+
+  .ingredients__control {
+    flex-direction: column;
+    align-items: flex-end;
+    border-bottom: 0px;
+  }
+
+  .ingredient_item {
+    justify-content: space-between;
+    align-items: center;
+    button {
+      i {
+        font-size: 1.8em;
+        color: #888;
+      }
+      &:hover i {
+        color: #444;
+      }
+    }
+    &:first-child {
+      border-top: 3px solid rgba(187, 197, 203, 0.8);
+    }
+    &:last-child {
+      border-bottom: 0px;
+    }
+  }
+}
+
+.ingredients__button {
+  margin-bottom: 0.4em;
+  padding: 0.3em;
+  color: lighten($darkColor, 15);
+  &:hover {
+    color: $darkColor;
+  }
+}
+
+.ingredients__button_unit {
+  padding: 0.3em;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+
+  .unit__label {
+    margin-right: 1em;
+    line-height: 22px;
+  }
+  .unit__button {
+    width: 40px;
+    height: 20px;
+    position: relative;
+    .dot {
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: darken($firstColor, 10);
+      cursor: pointer;
+      box-shadow: 0.5px 0.5px darken($firstColor, 10),
+        -0.5px -0.5px lighten($firstColor, 10),
+        inset -2px -2px 10px rgba(255, 255, 255, 0.6),
+        inset 2px 2px 10px rgba(0, 0, 0, 0.15),
+        0px 1px 12px -1px rgba(0, 0, 0, 0.15);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      transition: all 0.2s;
+    }
+    .stripe {
+      display: block;
+      margin-top: 5px;
+      width: 100%;
+      height: 10px;
+      box-shadow: 0.5px 0.5px rgb(247, 255, 255),
+        -0.5px -0.5px rgb(167, 177, 183), inset 2px 2px 10px rgba(0, 0, 0, 0.15),
+        inset -2px -2px 10px rgb(255, 255, 255);
+      border-radius: 0.8em;
+    }
+  }
+  &--active .unit__button .dot {
+    left: 20px;
+    background: $gradientOrange;
+    box-shadow: 0.5px 0.5px darken($lightOrange, 10),
+      -0.5px -0.5px lighten($darkOrange, 10),
+      inset -2px -2px 10px rgba(255, 255, 255, 0.6),
+      inset 2px 2px 10px rgba(0, 0, 0, 0.15),
+      0px 1px 12px -1px rgba(0, 0, 0, 0.15);
+  }
 }
