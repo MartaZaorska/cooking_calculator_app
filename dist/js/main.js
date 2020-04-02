@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  //serviceWorker
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./serviceWorker.js")
+        .then(reg => console.log("Service Worker: Registered"))
+        .catch(err => console.log("Service Worker: Error"));
+    });
+  }
+
   //DOM Elements
   const temperatureInput = document.querySelector("#input_temperature");
   const temperatureChangeButton = document.querySelector(
@@ -9,10 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const basicUnitButton = document.getElementById("basic_unit");
   const clearIngredientsButton = document.getElementById("clear_ingredients");
 
-  const init = async () => {
+  const init = () => {
     const ingredients = Store.getData() || [];
-    await UI.displayStartData();
-    await UI.displayIngredients(ingredients);
+    UI.displayStartData();
+    UI.displayIngredients(ingredients);
   };
 
   //Event Listener

@@ -1,0 +1,31 @@
+{
+  "name": "Cooking Calculator Application",
+  "short_name": "Cooking Calculator",
+  "start_url": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#e4eaed",
+  "theme_color": "#e4eaed",
+  "icons": [
+    {
+      "src": "./images/icons/app-icon-64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/icons/app-icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/icons/app-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/icons/app-icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}

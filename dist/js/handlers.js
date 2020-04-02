@@ -10,8 +10,8 @@ const temperatureHandler = changeScale => {
   if (changeScale) {
     resultScaleElement.setAttribute("data-scale", firstScale);
     firstScaleElement.setAttribute("data-scale", resultScale);
-    resultScaleElement.innerHTML = `&deg; ${firstScale}`;
-    firstScaleElement.innerHTML = `&deg; ${resultScale}`;
+    resultScaleElement.innerHTML = `&deg;${firstScale}`;
+    firstScaleElement.innerHTML = `&deg;${resultScale}`;
   }
 
   if (inputTemperature.value === "") {
@@ -34,8 +34,8 @@ const changeUnitHandler = e => {
   const ingredients = Store.getData();
   const basicUnitButton = document.getElementById("basic_unit");
   basicUnitButton.classList.toggle("ingredients__button_unit--active");
-  const basicUnit = basicUnitButton.getAttribute("data-value");
-  const newBasicUnit = basicUnit === "off" ? "on" : "off";
+  const newBasicUnit =
+    basicUnitButton.getAttribute("data-value") === "off" ? "on" : "off";
   basicUnitButton.setAttribute("data-value", newBasicUnit);
   UI.displayIngredients(ingredients);
 };
@@ -47,7 +47,7 @@ const portionHandler = e => {
   if (checkNumber(portion) || portion === "") {
     UI.displayIngredients(ingredients);
   } else {
-    window.alert("Wprowadź prawidłową liczbę w polu porcja");
+    UI.displayError("Wprowadź prawidłową liczbę");
   }
 };
 
@@ -56,13 +56,13 @@ const addIngredientHandler = e => {
   const ingredients = Store.getData();
   const { name, unit, amount } = e.target.elements;
   if (name.value === "" || unit.value === "" || amount.value === "") {
-    window.alert("Wszystkie pola formularza muszą zostać wypełnione");
+    UI.displayError("Wszystkie pola formularza muszą zostać wypełnione");
     return;
   }
 
   const amountValue = prepareNumber(amount.value);
   if (!checkNumber(amountValue)) {
-    window.alert("Wprowadź poprawną ilość składnika");
+    UI.displayError("Wprowadź poprawną ilość składnika");
     return;
   }
 
@@ -73,9 +73,9 @@ const addIngredientHandler = e => {
   };
 
   ingredients.push(newIngredient);
+  Store.setData(ingredients);
   UI.displayIngredients(ingredients);
   e.target.reset();
-  Store.setData(ingredients);
 };
 
 const removeIngredientHandler = (e, ingredients, index) => {

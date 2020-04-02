@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e4eaed" />
+    <meta
+      name="description"
+      content="Aplikacja do obliczania ilość produktów użytych w przepisie i temperatury"
+    />
     <title>Cooking Calculator</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="shortcut icon" href="./images/icons/app-icon-64x64.png" />
     <link rel="stylesheet" href="css/main.min.css" />
     <script
       src="https://kit.fontawesome.com/1df1c9dc3d.js"
@@ -12,13 +19,21 @@
     ></script>
   </head>
   <body>
-    <section class="container">
+    <div class="error"></div>
+
+    <main class="container">
       <section class="add_ingredient box">
         <h3 class="add_ingredient__title">Dodaj składnik</h3>
         <form class="add_ingredient__form">
           <div class="add_ingredient__control">
             <label for="amount">Ilość </label>
-            <input type="text" id="amount" name="amount" placeholder="100.00" />
+            <input
+              type="text"
+              id="amount"
+              autocomplete="off"
+              name="amount"
+              placeholder="100.00"
+            />
           </div>
           <div class="add_ingredient__control">
             <label for="unit">Jednostka </label>
@@ -26,7 +41,13 @@
           </div>
           <div class="add_ingredient__control">
             <label for="name">Nazwa </label>
-            <input type="text" id="name" name="name" placeholder="np. mleko" />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="off"
+              placeholder="np. mleko"
+            />
           </div>
           <div class="add_ingredient__control--button">
             <button type="submit" class="add_ingredient__button">
@@ -38,7 +59,13 @@
       <section class="portion box">
         <div class="portion__control">
           <label for="portion">Wielkość porcji</label>
-          <input type="text" id="portion_input" placeholder="1" value="1" />
+          <input
+            type="text"
+            id="portion_input"
+            placeholder="1"
+            value="1"
+            autocomplete="off"
+          />
         </div>
       </section>
       <section class="ingredients box">
@@ -78,7 +105,7 @@
       </section>
       <section class="measure box"></section>
       <section class="products box"></section>
-    </section>
+    </main>
     <script src="js/constants.js"></script>
     <script src="js/helper.js"></script>
     <script src="js/Store.js"></script>

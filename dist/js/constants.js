@@ -12,15 +12,15 @@ const WEIGHTS = {
     unit: "gram"
   },
   "fl oz (fluid)": {
-    value: 30,
+    value: 29.5735296,
     unit: "ml"
   },
   mg: {
     value: 0.001,
     unit: "gram"
   },
-  "Ib (funt)": { value: 453.5, unit: "gram" },
-  "oz (uncja)": { value: 28.3, unit: "gram" }
+  "Ib (funt)": { value: 453.59237, unit: "gram" },
+  "oz (uncja)": { value: 28.3495231, unit: "gram" }
 };
 
 const MEASURE = [

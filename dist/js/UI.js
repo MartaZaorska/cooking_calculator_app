@@ -5,13 +5,25 @@ class UI {
     UI.displayUnitSelect();
   }
 
+  static displayError(message) {
+    const errorElement = document.querySelector(".error");
+    errorElement.innerHTML = `
+      <p class="error__text">${message}</p>
+    `;
+    setTimeout(() => (errorElement.innerHTML = ""), 3000);
+  }
+
   static displayMeasure() {
     const measureElement = document.querySelector(".measure");
     measureElement.innerHTML = "";
     Object.entries(WEIGHTS).forEach(item => {
       measureElement.innerHTML += `
         <div class="measure__item">
-          <span class="name">${item[0]}</span> <span class="value">${item[1].value} ${item[1].unit}</span>
+          <span class="name">${
+            item[0]
+          }</span> <span class="value">${getFloatNumber(item[1].value)} ${
+        item[1].unit
+      }</span>
         </div>
       `;
     });
@@ -45,8 +57,9 @@ class UI {
     const ingredient = { ...ingredients[index] };
     const unitValue = getUnitValue(ingredient.unit);
 
-    if (basicUnit && ingredient.unit !== "cup" && WEIGHTS[unitValue]) {
+    if (basicUnit) {
       const { amount, unit } = getValueForBasicUnit(
+        ingredient.name,
         ingredient.amount,
         unitValue
       );
@@ -62,7 +75,9 @@ class UI {
       removeIngredientHandler(e, ingredients, index)
     );
     element.innerHTML = `
-      <p class="ingredient_item__text">${ingredient.amount} ${ingredient.unit} ${ingredient.name}</p>
+      <p class="ingredient_item__text">${getFloatNumber(ingredient.amount)} ${
+      ingredient.unit
+    } ${ingredient.name}</p>
       <button class="ingredient_item__button">
         <i class="far fa-times-circle"></i>
       </button>
