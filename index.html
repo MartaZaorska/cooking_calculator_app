@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#e4eaed" />
+    <meta
+      name="description"
+      content="Aplikacja do obliczania ilość produktów użytych w przepisie i temperatury"
+    />
+    <title>Cooking Calculator</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="shortcut icon" href="./images/icons/app-icon-64x64.png" />
+    <link rel="stylesheet" href="css/main.min.css" />
+    <script
+      src="https://kit.fontawesome.com/1df1c9dc3d.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="error"></div>
+
+    <main class="container">
+      <section class="add_ingredient box">
+        <h3 class="add_ingredient__title">Dodaj składnik</h3>
+        <form class="add_ingredient__form">
+          <div class="add_ingredient__control">
+            <label for="amount">Ilość </label>
+            <input
+              type="text"
+              id="amount"
+              autocomplete="off"
+              name="amount"
+              placeholder="100.00"
+            />
+          </div>
+          <div class="add_ingredient__control">
+            <label for="unit">Jednostka </label>
+            <select id="unit" class="unit__select" name="unit"></select>
+          </div>
+          <div class="add_ingredient__control">
+            <label for="name">Nazwa </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="off"
+              placeholder="np. mleko"
+            />
+          </div>
+          <div class="add_ingredient__control--button">
+            <button type="submit" class="add_ingredient__button">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </form>
+      </section>
+      <section class="portion box">
+        <div class="portion__control">
+          <label for="portion">Wielkość porcji</label>
+          <input
+            type="text"
+            id="portion_input"
+            placeholder="1"
+            value="1"
+            autocomplete="off"
+          />
+        </div>
+      </section>
+      <section class="ingredients box">
+        <div class="ingredients__control">
+          <button class="ingredients__button" id="clear_ingredients">
+            wyczyść listę
+          </button>
+          <button
+            class="ingredients__button_unit"
+            data-value="off"
+            id="basic_unit"
+          >
+            <span class="unit__label">
+              wartości w gram/ml
+            </span>
+            <span class="unit__button">
+              <span class="stripe"></span>
+              <span class="dot"></span>
+            </span>
+          </button>
+        </div>
+        <div class="ingredients__content"></div>
+      </section>
+      <section class="temperature box">
+        <h3 class="temperature__title">Przelicz temperaturę</h3>
+        <div class="temperature__control">
+          <input type="text" id="input_temperature" placeholder="0" />
+          <span class="first_scale" data-scale="F">&deg;F</span>
+        </div>
+        <button type="button" class="temperature__button">
+          <i class="fas fa-sync-alt"></i>
+        </button>
+        <h4 class="temperature__subtitle">
+          <span id="result_temperature">0</span>
+          <span class="result_scale" data-scale="C">&deg;C</span>
+        </h4>
+      </section>
+      <section class="measure box"></section>
+      <section class="products box"></section>
+    </main>
+    <script src="js/main.min.js"></script>
+  </body>
+</html>
